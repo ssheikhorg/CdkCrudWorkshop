@@ -10,7 +10,7 @@ class CrudStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        Function(
+        self.create = Function(
             self,
             "CreateFunction",
             function_name="CreateFunction",
@@ -19,7 +19,7 @@ class CrudStack(Stack):
             handler="index.handler",
         )
 
-        Function(
+        self.read = Function(
             self,
             "ReadFunction",
             function_name="ReadFunction",
@@ -28,7 +28,7 @@ class CrudStack(Stack):
             handler="index.handler",
         )
 
-        Function(
+        self.update = Function(
             self,
             "UpdateFunction",
             function_name="UpdateFunction",
@@ -37,7 +37,7 @@ class CrudStack(Stack):
             handler="index.handler",
         )
 
-        Function(
+        self.delete = Function(
             self,
             "DeleteFunction",
             function_name="DeleteFunction",
