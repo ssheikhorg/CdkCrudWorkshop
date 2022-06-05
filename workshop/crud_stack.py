@@ -3,45 +3,39 @@ from aws_cdk import (
     Stack,
 )
 from constructs import Construct
-from aws_cdk.aws_lambda import Function, Code, Runtime
+
+from aws_cdk.aws_lambda import Code
+from .base_function import BaseFunction
 
 
 class CrudStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        self.create = Function(
+        self.create = BaseFunction(
             self,
-            "CreateFunction",
-            function_name="CreateFunction",
+            "Create",
+            function_name="Create",
             code=Code.from_asset(f"workshop/crud/create"),
-            runtime=Runtime.PYTHON_3_9,
-            handler="index.handler",
         )
 
-        self.read = Function(
+        self.read = BaseFunction(
             self,
-            "ReadFunction",
-            function_name="ReadFunction",
+            "Read",
+            function_name="Read",
             code=Code.from_asset(f"workshop/crud/read"),
-            runtime=Runtime.PYTHON_3_9,
-            handler="index.handler",
         )
 
-        self.update = Function(
+        self.update = BaseFunction(
             self,
-            "UpdateFunction",
-            function_name="UpdateFunction",
+            "Update",
+            function_name="Update",
             code=Code.from_asset(f"workshop/crud/update"),
-            runtime=Runtime.PYTHON_3_9,
-            handler="index.handler",
         )
 
-        self.delete = Function(
+        self.delete = BaseFunction(
             self,
-            "DeleteFunction",
-            function_name="DeleteFunction",
+            "Delete",
+            function_name="Delete",
             code=Code.from_asset(f"workshop/crud/delete"),
-            runtime=Runtime.PYTHON_3_9,
-            handler="index.handler",
         )
